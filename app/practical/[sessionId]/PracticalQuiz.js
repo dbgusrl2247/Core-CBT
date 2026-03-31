@@ -431,7 +431,7 @@ function getLabeledTokenMatches(text) {
   const target = String(text ?? '').trim();
   if (!target) return [];
   const labelCore =
-    '(\\([가-힣]\\)|[가-힣]\\.|\\(\\d+\\)|[가나다라마바사아자차카타파하]|[①-⑳]|[ㄱ-ㅎ]|\\d+\\)|\\d+\\.)';
+    '(\\([가-힣]\\)|[가-힣]\\.|\\(\\d+\\)|[가나다라마바사아자차카타파하]|[①-⑳]|[ㄱ-ㅎ]|\\d+\\)|\\d+\\.|\\d+)';
   const pattern = new RegExp(`(^|[\\s,\\/|])${labelCore}(?:\\s*[:：-]\\s*|\\s+(?=[^,\\/|\\s]))`, 'g');
   const matches = [];
   let m;
@@ -597,7 +597,7 @@ function parseLabeledMultiBlankValuesByKnownLabels(value, labels) {
       .slice(valueStart, valueEnd)
       .trim()
       .replace(/^[,\/|]\s*/g, '')
-      .replace(/[,\s/|]+$/g, '');
+      .replace(/[,\s/|(]+$/g, '');
     values.push(raw);
   }
 
